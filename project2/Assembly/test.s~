@@ -1,0 +1,12 @@
+	addi $a2, $zero, 3
+	addi $a1, $zero, 10
+	addi $a0, $zero, 0
+loop:	sw $a0, 0($a0)
+	addi $a0, $a0, 1
+	lw $a3, 0($a0)
+	beq $a0, $a1, done
+	jalr $a2, $zero
+
+done:	add $v0, $a1, $zero
+
+

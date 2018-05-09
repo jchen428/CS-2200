@@ -1,0 +1,14 @@
+1a.)	Register 0, $zero, is always zero regardless of any attempts to write over it, used for unconditional jumps.
+		Regsiter 1, $at, is a general purpose register that is used for the address of the fibonacci label.
+		Register 2, $v0, is used for the return value of the currently active procedure.
+		Registers 3-5, $a0-$a2, are used for subroutine parameters.
+		Registers 6-8, $t0-$t2, are used for temporary and callee values.
+		Registers 9-11, $s0-$s2, are the saved registers used for values needed by the caller.
+		Register 12, $k0, is used to handle interrupts, unused.
+		Register 13, $sp, is used for the stack pointer to keep track of the top of the activation record.
+		Register 14, $fp, is used for the frame pointer to keep track of the first address on the activation record for the currently executing process.
+		Register 15, $ra, is used to store the return address for once the current subroutine is completed.
+
+1b.)	The stack pointer points to the top of the activation record. The stack grows from low adresses to high addresses.
+
+1c.)	The state of the caller must first be preserved for resuption upon return from the procedure call. The callee should not use $s0-$s2 unless necessary and must save their original values to the stack if they're needed. The caller then passes the parameters to the callee with $a0-$a2 and saves the previous return address to the stack and remembers its new return address in $ra before transferring control to the callee with a JALR command. The callee will set the frame pointer equal to the stack pointer and move the stack pointer to the top of the stack. At the end of its procedure, the callee must restore the original values of $s0-$s2 from the stack, if necessary, and save its return value into $v0. The callee then moves the stack and frame pointers to discard all values that are no longer needed and jumps back to the return address currently in $ra with an unconditional JALR command to return to the caller. Upon return, the caller restores the previous return address back into $ra from the stack.

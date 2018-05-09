@@ -1,0 +1,49 @@
+CS 2200 Spring 2016
+Project 5
+Name:		Jesse Chen
+GT Number:	903006652
+
+Problem 1B
+----------
+
+Total execution time
+1 core:		67.6 s
+2 cores:	35.8 s
+4 cores:	33.1 s
+
+No, there is not a linear relationship between the number of CPUs and total execution time. Amdahl's law demonstrates that processor speedup increases asymptotically, depending on program parallelism, as the number of processors increases.
+
+Problem 2B
+----------
+
+800ms
+# of Context Switches: 136
+Total execution time: 67.6 s
+Total time spent in READY state: 325.4 s
+
+600ms
+# of Context Switches: 161
+Total execution time: 67.6 s
+Total time spent in READY state: 314.5 s
+
+400ms
+# of Context Switches: 203
+Total execution time: 67.6 s
+Total time spent in READY state: 298.8 s
+
+200ms
+# of Context Switches: 362
+Total execution time: 67.5 s
+Total time spent in READY state: 285.2 s
+
+As a Round-Robin scheduler runs on shorter quantums, the processor has to perform more context switches, which equates to more CPU overhead and longer execution times in a real OS.
+
+Problem 3B
+----------
+
+Total time spent in READY state
+First In, First Out:	389.9 s	
+Round-Robin (100ms):	284.7 s
+Static Priority:		294.2 s
+
+Of the three scheduling algorithms implemented, Round-Robin is the closest approximation of Shortest Job First. Since Round-Robin gives all processes an equal quantum of processing time, shorter jobs will always finish in less time than longer jobs because longer jobs will be preempted more often during their life cycle, resulting in more CPU overhead and longer execution times.
